@@ -3,11 +3,38 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers } from 'redux'
+
+const count = (state=0, action) => {
+  switch(action.type) {
+    default: 
+      return state
+  }
+}
+
+const characters = (state=[], action) => {
+  switch(action.type) {
+    case "SET_CHARACTERS":
+      return action.characters
+    default: 
+    return state
+  } 
+}
+
+const rootReducer = combineReducers({
+  count, characters
+})
+
+const store = createStore(rootReducer)
+
+// console.log(store.getState())
+
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
